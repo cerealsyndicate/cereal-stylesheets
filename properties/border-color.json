@@ -1,0 +1,7 @@
+{
+  "border-color": {
+    "prefix": "border",
+    "responsive": false,
+    "values": "...COLOR"
+  }
+}

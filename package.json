@@ -1,0 +1,13 @@
+{
+  "name": "cereal-stylesheets",
+  "version": "1.0.0",
+  "description": "Stylesheets of champions",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch index.js"
+  },
+  "keywords": [],
+  "author": "Philip Zastrow",
+  "license": "ISC"
+}

@@ -1,0 +1,18 @@
+{
+  "NEGATIVE_SPACES": {
+    "prefix": "space",
+    "addRoot": true,
+    "values": {
+      "n1": "-0.25rem",
+      "n2": "-0.5rem",
+      "n3": "-0.75rem",
+      "n4": "-1rem",
+      "n5": "-1.25rem",
+      "n6": "-1.5rem",
+      "n7": "-1.75rem",
+      "n8": "-2rem",
+      "n9": "-2.25rem",
+      "n10": "-2.5rem"
+    }
+  }
+}

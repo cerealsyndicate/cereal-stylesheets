@@ -1,0 +1,17 @@
+{
+  "gap": {
+    "prefix": "gap",
+    "responsive": true,
+    "values": "...SPACES"
+  },
+  "row-gap": {
+    "prefix": "row-gap",
+    "responsive": true,
+    "values": "...SPACES"
+  },
+  "column-gap": {
+    "prefix": "column-gap",
+    "responsive": true,
+    "values": "...SPACES"
+  }
+}

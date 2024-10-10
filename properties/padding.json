@@ -1,0 +1,30 @@
+{
+  "padding": {
+    "prefix": "p",
+    "values": "...SPACES"
+  },
+  "padding-block": {
+    "prefix": "py",
+    "values": "...SPACES"
+  },
+  "padding-inline": {
+    "prefix": "px",
+    "values": "...SPACES"
+  },
+  "padding-block-start": {
+    "prefix": "pys",
+    "values": "...SPACES"
+  },
+  "padding-block-end": {
+    "prefix": "pye",
+    "values": "...SPACES"
+  },
+  "padding-inline-start": {
+    "prefix": "pxs",
+    "values": "...SPACES"
+  },
+  "padding-inline-end": {
+    "prefix": "pxe",
+    "values": "...SPACES"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "font-size": {
+    "prefix": "fs",
+    "values": "...FONT_SIZES"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "display": {
+    "properties": "display",
+    "prefix": "d",
+    "responsive": true,
+    "values": [
+      "none",
+      "inline",
+      "block",
+      "inline-block",
+      "table",
+      "table-row",
+      "table-cell",
+      "flex",
+      "inline-flex",
+      "grid",
+      "inline-grid"
+    ]
+  }
+}
