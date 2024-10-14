@@ -7,8 +7,6 @@ const defaultConfig = {
 
   "rootCustomProperties": true, // Sets the default value for the addRoot value in settings objects. This can be overridden by individual settings objects’ addRoot value.
 
-  "useLogicalProperties": true, // If true, generates logical properties instead of physical properties on default properties. If the user has defined a property with a logical value, it will be used instead of the default.
-
   "mediaQueryClasses": true, // Sets the default value for the responsive value in properties objects. This can be overridden by individual properties objects’ responsive value.
 
   "stateClasses": true, // If true, generates state classes for default properties, such as colors, text-decoration, border-color, and background-color. By default a provided settings object is used, but this can be overridden by individual properties objects with a stateClasses value. The state classes are an object containing a list of the desired states. These states must be valid pseudo-classes, not pseudo-elements.

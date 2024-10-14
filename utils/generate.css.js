@@ -7,7 +7,6 @@ export default function generateCSS(config) {
   const {
     customPropertiesOnly,
     rootCustomProperties,
-    useLogicalProperties,
     mediaQueryClasses,
     stateClasses
   } = config;
@@ -33,7 +32,6 @@ export default function generateCSS(config) {
 
   output += createSelectors({
     customPropertiesOnly,
-    useLogicalProperties,
     mediaQueryClasses,
     stateClasses,
     settings,

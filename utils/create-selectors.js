@@ -1,7 +1,6 @@
 export default function createSelectors(props) {
 const {
   customPropertiesOnly,
-  useLogicalProperties,
   mediaQueryClasses,
   stateClasses,
   settings,
