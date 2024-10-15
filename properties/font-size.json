@@ -1,6 +1,7 @@
 {
   "font-size": {
     "prefix": "fs",
+    "responsive": false,
     "values": "...FONT_SIZES"
   }
 }

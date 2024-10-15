@@ -8,7 +8,8 @@ export default function generateCSS(config) {
     customPropertiesOnly,
     rootCustomProperties,
     mediaQueryClasses,
-    stateClasses
+    stateClasses,
+    mediaQueries,
   } = config;
 
   // Settings Array
@@ -31,10 +32,6 @@ export default function generateCSS(config) {
   })
 
   output += createSelectors({
-    customPropertiesOnly,
-    mediaQueryClasses,
-    stateClasses,
-    settings,
     properties
   })
 

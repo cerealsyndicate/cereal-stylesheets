@@ -1,3 +1,7 @@
 output.css
 /dist
 config_sample
+
+# Ignore VS Code Files
+.vscode
+*.code-workspace

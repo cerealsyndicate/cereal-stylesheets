@@ -2,6 +2,7 @@
   "color": {
     "prefix": "color",
     "responsive": false,
+    "states": ["hover", "focus", "active"],
     "values": "...COLOR"
   }
 }

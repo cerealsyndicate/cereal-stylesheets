@@ -1,91 +1,63 @@
-export default function createSelectors(props) {
-const {
-  customPropertiesOnly,
-  mediaQueryClasses,
-  stateClasses,
-  settings,
-  properties
-} = props;
+import getValues from "../helpers/get-values.js"
+import escapeClassSeparator from "../helpers/escape-class.js"
 
-let cssContent = '';
-
-// Getting Settings
-const getSettings = (key) => {
-  const setting = settings.find(setting => setting[key])
-  return setting ? setting[key] : null
-}
-
-// Boolean check if the string is a reference to a settings object
-const isStringArray = (str) => {
-  return (typeof str === 'string' && str.startsWith('...'))
-}
-
-// A typeof function that also checks if the value is an array
-const isTypeOf = (str) => {
-  if (Array.isArray(str)) {
-    return 'array'
-  } else {
-    return typeof str
-  }
-}
-
-// This function takes in the `values` value of a property.
-// It will return an object that can then be iterated over to create the CSS
-const getValues = (str) => {
-  let finalValues = {}
-
-  if (isTypeOf(str) === 'array') {
-    str.forEach(item => {
-      if (isStringArray(item)) {
-        Object.assign(finalValues, getValues(item))
-      } else {
-        finalValues[item] = item
-      }
-    })
-  }
-  
-  else if (isTypeOf(str) === 'object') {
-    return str
-  }
-
-  else if (isStringArray(str)) {
-    const obj = str.slice(3)
-    return getValues(getSettings(obj).values)
-  }
-
-  return finalValues
-}
-
-// Loop through the properties
-properties.forEach(property => {
+const generateSelectors = (valuesArray, prefix, printProps, state={}, mq={}) => {
   let selectorString = '';
 
-  Object.keys(property).forEach(key => {
-    const propArray = property[key];
+  const stateSeparator = state.separator ? escapeClassSeparator(state.separator) : ''
+  const mqSeparator = mq.separator ? escapeClassSeparator(mq.separator) : ''
+  const stateSuffix = state.value ? `${stateSeparator}${state.value}` : ''
+  const mqSuffix = mq.value ? `${mqSeparator}${mq.value}` : ''
+  const suffix = `${stateSuffix}${mqSuffix}`
+  const statePseudo = state.value ? `:${state.value}` : ''
+  
+  for (const [key, value] of Object.entries(valuesArray)) {
+    selectorString += `.${prefix}-${key}${suffix}${statePseudo} {\n`
+    Object.values(printProps).forEach(prop => {
+      selectorString += `\t${prop}: ${value};\n`
+    })
+    selectorString += `}\n`
+  }
 
-    const prefix = propArray.prefix;
+  return selectorString
+}
 
-    const responsive = propArray.responsive
+const createAllClasses = (properties, {...mq}) => {
+  let selectorString = ''
 
-    const printProps = propArray.properties ?
-      (typeof propArray.properties === 'string' ?
-        [propArray.properties] :
-        propArray.properties) :
-      [key];
+  // Loop through the properties
+  properties.forEach(property => {
+    Object.keys(property).forEach(key => {
+      const propArray = property[key]
+      const prefix = propArray.prefix
 
-    const valuesArray = getValues(propArray.values)
-    
-    for (const [key, value] of Object.entries(valuesArray)) {
-      selectorString += `.${prefix}-${key} {\n`
-      Object.values(printProps).forEach(prop => {
-        selectorString += `\t${prop}: ${value};\n`
-      })
-      selectorString += `}\n`
-    }
+      const printProps = propArray.properties ?
+        (typeof propArray.properties === 'string' ?
+          [propArray.properties] :
+          propArray.properties) :
+        [key]
+
+      const valuesArray = getValues(propArray.values)
+      
+      selectorString += generateSelectors(valuesArray, prefix, printProps, {}, {...mq})      
+        if ('states' in propArray) {
+          const statesArray = (typeof propArray.states === 'string') ? ['hover', 'focus', 'active'] : propArray.states
+
+          for (const state of statesArray) {
+            selectorString += generateSelectors(valuesArray, prefix, printProps, {value: state, separator: ':'}, {...mq})
+          }
+        }
+    })
   })
 
-  cssContent += selectorString
-})
+  return selectorString
+}
 
-return cssContent;
+// Function to create selectors from properties
+export default function createSelectors(props) {
+  const {
+    properties
+  } = props;
+
+  return createAllClasses(properties, {})
 }

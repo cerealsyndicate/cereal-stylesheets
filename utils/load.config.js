@@ -1,6 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import defaultConfig from './default.config.js';
+import fs from 'fs'
+import path from 'path'
+import defaultConfig from './default.config.js'
+import mediaQueries from './default.media-queries.js'
+import mqNormalizer from './media-query.normalizer.js'
+import state from './state.js'
 
 // Function to load properties from files in the properties folder
 function loadProperties() {
@@ -55,6 +58,7 @@ function loadSettings() {
 }
 
 async function config() {
+
   const configPath = path.resolve(process.cwd(), 'cereal.config.js');
 
   let userConfig = {};
@@ -71,7 +75,38 @@ async function config() {
   const properties = loadProperties();
   const settings = loadSettings();
 
-  return { ...defaultConfig, properties: { ...properties, ...userConfig.properties }, settings: { ...settings, ...userConfig.settings } };
+  const { 
+    properties: userProperties,
+    settings: userSettings,
+    mediaQueries: userMediaQueries,
+    ...customUserConfig } = userConfig
+
+  const finalProperties = {
+    ...properties,
+    ...userProperties
+  }
+
+  const finalSettings = {
+    ...settings,
+    ...userSettings
+  }
+
+  const normalizedMediaQueries = mqNormalizer(mediaQueries)
+  const normalizedUserMediaQueries = mqNormalizer(userMediaQueries)
+  const finalMediaQueries = {
+    ...normalizedMediaQueries,
+    ...normalizedUserMediaQueries
+  }
+
+  state.add([{ properties: finalProperties, settings: finalSettings, mediaQueries: finalMediaQueries}])
+
+  return {
+    ...defaultConfig,
+    ...customUserConfig,
+    mediaQueries: finalMediaQueries,
+    properties: finalProperties,
+    settings: finalSettings
+  }
 }
 
 export default config;
