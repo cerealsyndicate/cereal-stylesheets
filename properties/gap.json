@@ -1,17 +1,17 @@
 {
   "gap": {
     "prefix": "gap",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   },
   "row-gap": {
     "prefix": "row-gap",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   },
   "column-gap": {
     "prefix": "column-gap",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   }
 }

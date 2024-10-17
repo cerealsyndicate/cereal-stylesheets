@@ -1,51 +1,51 @@
 {
   "border-radius" : {
     "prefix": "round",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   },
   "border-top-left-radius" : {
     "prefix": "round-top-left",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   },
   "border-top-right-radius" : {
     "prefix": "round-top-right",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   },
   "border-bottom-left-radius" : {
     "prefix": "round-bottom-left",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   },
   "border-bottom-right-radius" : {
     "prefix": "round-bottom-right",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   },
   "border-top-radius" : {
     "prefix": "round-top",
     "properties": ["border-top-left-radius", "border-top-right-radius"],
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   },
   "border-bottom-radius" : {
     "prefix": "round-bottom",
     "properties": ["border-bottom-left-radius", "border-bottom-right-radius"],
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   },
   "border-left-radius" : {
     "prefix": "round-left",
     "properties": ["border-top-left-radius", "border-bottom-left-radius"],
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   },
   "border-right-radius" : {
     "prefix": "round-right",
     "properties": ["border-top-right-radius", "border-bottom-right-radius"],
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...RADIUS"
   }
 }

@@ -17,7 +17,7 @@ async function main() {
 
   const outputDir = processOutputDir(configuration.outputDirectory);
   const outputFile = configuration.outputFile;
- 
+
   fs.mkdirSync(outputDir, { recursive: true });
 
   fs.writeFile(

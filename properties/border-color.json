@@ -1,7 +1,7 @@
 {
   "border-color": {
     "prefix": "border",
-    "responsive": false,
+    "responsive": ["light", "dark"],
     "values": "...COLOR"
   }
 }

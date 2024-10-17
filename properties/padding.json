@@ -1,37 +1,37 @@
 {
   "padding": {
     "prefix": "p",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   },
   "padding-block": {
     "prefix": "py",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   },
   "padding-inline": {
     "prefix": "px",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   },
   "padding-block-start": {
     "prefix": "pys",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   },
   "padding-block-end": {
     "prefix": "pye",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   },
   "padding-inline-start": {
     "prefix": "pxs",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   },
   "padding-inline-end": {
     "prefix": "pxe",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": "...SPACES"
   }
 }

@@ -32,6 +32,7 @@ export default function generateCSS(config) {
   })
 
   output += createSelectors({
+    mediaQueries,
     properties
   })
 

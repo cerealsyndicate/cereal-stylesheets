@@ -1,5 +1,6 @@
 import getValues from "../helpers/get-values.js"
 import escapeClassSeparator from "../helpers/escape-class.js"
+import isTypeOf from "../helpers/is-typeof.js";
 
 const generateSelectors = (valuesArray, prefix, printProps, state={}, mq={}) => {
   let selectorString = '';
@@ -10,13 +11,14 @@ const generateSelectors = (valuesArray, prefix, printProps, state={}, mq={}) => 
   const mqSuffix = mq.value ? `${mqSeparator}${mq.value}` : ''
   const suffix = `${stateSuffix}${mqSuffix}`
   const statePseudo = state.value ? `:${state.value}` : ''
+  const tab = mq.value ? '\t' : ''
   
   for (const [key, value] of Object.entries(valuesArray)) {
-    selectorString += `.${prefix}-${key}${suffix}${statePseudo} {\n`
+    selectorString += `${tab}.${prefix}-${key}${suffix}${statePseudo} {\n`
     Object.values(printProps).forEach(prop => {
-      selectorString += `\t${prop}: ${value};\n`
+      selectorString += `${tab}\t${prop}: ${value};\n`
     })
-    selectorString += `}\n`
+    selectorString += `${tab}}\n`
   }
 
   return selectorString
@@ -30,6 +32,7 @@ const createAllClasses = (properties, {...mq}) => {
     Object.keys(property).forEach(key => {
       const propArray = property[key]
       const prefix = propArray.prefix
+      const responsive = propArray.responsive
 
       const printProps = propArray.properties ?
         (typeof propArray.properties === 'string' ?
@@ -37,16 +40,32 @@ const createAllClasses = (properties, {...mq}) => {
           propArray.properties) :
         [key]
 
-      const valuesArray = getValues(propArray.values)
-      
-      selectorString += generateSelectors(valuesArray, prefix, printProps, {}, {...mq})      
-        if ('states' in propArray) {
-          const statesArray = (typeof propArray.states === 'string') ? ['hover', 'focus', 'active'] : propArray.states
+        const valuesArray = getValues(propArray.values);
 
-          for (const state of statesArray) {
-            selectorString += generateSelectors(valuesArray, prefix, printProps, {value: state, separator: ':'}, {...mq})
+        const generator = () => {
+          selectorString += generateSelectors(valuesArray, prefix, printProps, {}, {...mq});
+          if ('states' in propArray) {
+            const statesArray = (typeof propArray.states === 'string') ? ['hover', 'focus', 'active'] : propArray.states;
+        
+            for (const state of statesArray) {
+              selectorString += generateSelectors(valuesArray, prefix, printProps, {value: state, separator: ':'}, {...mq});
+            }
+          }
+        };
+        
+        generator();
+        
+        const isMQArray = Array.isArray(responsive);
+        
+        if (responsive && isMQArray) {
+          const hasOnlyExclusions = responsive.every(item => item.startsWith('!'));
+          const keyWithoutExclamation = key.startsWith('!') ? key.slice(1) : key;
+        
+          if (!hasOnlyExclusions || (hasOnlyExclusions && !responsive.includes(`!${keyWithoutExclamation}`))) {
+            generator();
           }
         }
+
     })
   })
 
@@ -56,8 +75,38 @@ const createAllClasses = (properties, {...mq}) => {
 // Function to create selectors from properties
 export default function createSelectors(props) {
   const {
+    mediaQueries,
     properties
   } = props;
+  let classes = ''
 
-  return createAllClasses(properties, {})
+  classes += createAllClasses(properties, {})
+
+  if (mediaQueries.defineMediaQueries) {
+    for (const [key, values] of Object.entries(mediaQueries.values)) {
+      const {type, value, queryClass} = values
+      if (queryClass) {
+        const atMQ = () => {
+          switch (type) {
+            case 'min-width':
+              return `@media (min-width: ${value})`
+            case 'print':
+              return `@media print`
+            case 'range':
+              return `@media (${value})`
+            case 'custom':
+              return `@media ${value}`
+            default:
+              return `@media (${type}: ${value})`
+          }
+        }
+
+        classes += `${atMQ()} {\n`
+        classes += `${createAllClasses(properties, {separator: '@', value: key})}`
+        classes += `}\n`
+      }
+    }
+  }
+
+  return classes
 }

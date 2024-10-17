@@ -1,7 +1,7 @@
 {
   "font-size": {
     "prefix": "fs",
-    "responsive": false,
+    "responsive": ["!light", "!dark"],
     "values": "...FONT_SIZES"
   }
 }

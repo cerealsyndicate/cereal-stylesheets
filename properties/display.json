@@ -2,7 +2,7 @@
   "display": {
     "properties": "display",
     "prefix": "d",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": [
       "none",
       "inline",

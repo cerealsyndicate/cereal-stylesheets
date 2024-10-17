@@ -1,37 +1,37 @@
 {
   "margin": {
     "prefix": "m",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
   "margin-block": {
     "prefix": "my",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
   "margin-inline": {
     "prefix": "mx",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
   "margin-block-start": {
     "prefix": "mys",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
   "margin-block-end": {
     "prefix": "mye",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
   "margin-inline-start": {
     "prefix": "mxs",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
   "margin-inline-end": {
     "prefix": "mxe",
-    "responsive": true,
+    "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   }
 }
