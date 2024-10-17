@@ -1,0 +1,11 @@
+{
+  "text-decoration": {
+    "prefix": "text",
+    "responsive": true,
+    "values": {
+      "underline": "underline",
+      "line-through": "line-through",
+      "no-underline": "none"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "font-style": {
+    "prefix": "fst",
+    "responsive": false,
+    "values": {
+      "italic": "italic",
+      "normal": "normal",
+      "oblique": "oblique"
+    }
+  }
+}

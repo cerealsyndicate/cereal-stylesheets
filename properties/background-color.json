@@ -1,0 +1,8 @@
+{
+  "background-color": {
+    "prefix": "bg",
+    "responsive": ["light", "dark"],
+    "states": ["hover", "focus", "active"],
+    "values": "...COLOR"
+  }
+}
