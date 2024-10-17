@@ -16,7 +16,7 @@ const generateSelectors = (valuesArray, prefix, printProps, state={}, mq={}) => 
   for (const [key, value] of Object.entries(valuesArray)) {
     selectorString += `${tab}.${prefix}-${key}${suffix}${statePseudo} {\n`
     Object.values(printProps).forEach(prop => {
-      selectorString += `${tab}\t${prop}: ${value};\n`
+      selectorString += `${tab}${tab}${prop}: ${value};\n`
     })
     selectorString += `${tab}}\n`
   }
@@ -40,31 +40,42 @@ const createAllClasses = (properties, {...mq}) => {
           propArray.properties) :
         [key]
 
-        const valuesArray = getValues(propArray.values);
+      const valuesArray = getValues(propArray.values)
 
-        const generator = () => {
-          selectorString += generateSelectors(valuesArray, prefix, printProps, {}, {...mq});
-          if ('states' in propArray) {
-            const statesArray = (typeof propArray.states === 'string') ? ['hover', 'focus', 'active'] : propArray.states;
-        
-            for (const state of statesArray) {
-              selectorString += generateSelectors(valuesArray, prefix, printProps, {value: state, separator: ':'}, {...mq});
-            }
-          }
-        };
-        
-        generator();
-        
-        const isMQArray = Array.isArray(responsive);
-        
-        if (responsive && isMQArray) {
-          const hasOnlyExclusions = responsive.every(item => item.startsWith('!'));
-          const keyWithoutExclamation = key.startsWith('!') ? key.slice(1) : key;
-        
-          if (!hasOnlyExclusions || (hasOnlyExclusions && !responsive.includes(`!${keyWithoutExclamation}`))) {
-            generator();
+      const generator = () => {
+        selectorString += generateSelectors(valuesArray, prefix, printProps, {}, {...mq})      
+        if ('states' in propArray) {
+          const statesArray = (typeof propArray.states === 'string') ? ['hover', 'focus', 'active'] : propArray.states
+  
+          for (const state of statesArray) {
+            selectorString += generateSelectors(valuesArray, prefix, printProps, {value: state, separator: ':'}, {...mq})
           }
         }
+      }
+
+      if (mq.value === undefined) {
+        generator()
+      }
+
+      const isMQArray = isTypeOf(responsive) === 'array'
+      const hasOnlyExclusions = isMQArray ? responsive.every(item => item.startsWith('!')) : false
+
+      if ((responsive || isMQArray) && mq.value !== undefined) {
+        if (isMQArray) {
+          responsive.forEach(item => {
+            if (!hasOnlyExclusions) {
+              if (item === mq.value && responsive.includes(mq.value)) {
+                generator()
+              }
+            }
+            else if (hasOnlyExclusions) {
+              if (item != mq.value && !responsive.includes(`!${mq.value}`)) {
+                generator()
+              }
+            }
+          })
+        }
+      }
 
     })
   })
