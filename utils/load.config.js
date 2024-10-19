@@ -104,9 +104,9 @@ async function config() {
   const finalMediaQueries = {
     ...restNormalizedMediaQueries, // Spread the rest of the properties from normalizedMediaQueries
     ...restNormalizedUserMediaQueries, // Spread the rest of the properties from normalizedUserMediaQueries
-    values: {
-      ...normalizedUserMediaQueries.values, // Include the `values` property from normalizedUserMediaQueries
-    },
+    values: userMediaQueries?.values
+      ? normalizedUserMediaQueries.values
+      : normalizedMediaQueries.values, // Conditionally include the `values` property
   }
 
   state.add([

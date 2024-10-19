@@ -4,13 +4,7 @@ import createSelectors from "./create-selectors.js"
 export default function generateCSS(config) {
   let output = ""
 
-  const {
-    customPropertiesOnly,
-    rootCustomProperties,
-    mediaQueryClasses,
-    stateClasses,
-    mediaQueries,
-  } = config
+  const { customPropertiesOnly, rootCustomProperties, mediaQueries } = config
 
   // Settings Array
   let settings = config.settings || {}
@@ -30,8 +24,6 @@ export default function generateCSS(config) {
     settings,
     output,
   })
-
-  console.log("mq:", mediaQueries)
 
   output += createSelectors({
     mediaQueries,
