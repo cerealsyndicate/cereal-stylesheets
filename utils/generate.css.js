@@ -1,8 +1,8 @@
-import setCustomProperties from './custom-properties.js'
-import createSelectors from './create-selectors.js'
+import setCustomProperties from "./custom-properties.js"
+import createSelectors from "./create-selectors.js"
 
 export default function generateCSS(config) {
-  let output = '';
+  let output = ""
 
   const {
     customPropertiesOnly,
@@ -10,31 +10,33 @@ export default function generateCSS(config) {
     mediaQueryClasses,
     stateClasses,
     mediaQueries,
-  } = config;
+  } = config
 
   // Settings Array
-  let settings = config.settings || {};
+  let settings = config.settings || {}
   if (!Array.isArray(settings)) {
-    settings = [settings];
+    settings = [settings]
   }
-  
+
   // Properties Array
-  let properties = config.properties || {};
+  let properties = config.properties || {}
   if (!Array.isArray(properties)) {
-    properties = [properties];
+    properties = [properties]
   }
 
   output += setCustomProperties({
     customPropertiesOnly,
     rootCustomProperties,
     settings,
-    output
+    output,
   })
+
+  console.log("mq:", mediaQueries)
 
   output += createSelectors({
     mediaQueries,
-    properties
+    properties,
   })
 
-  return output;
+  return output
 }

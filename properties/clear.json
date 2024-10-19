@@ -1,0 +1,11 @@
+{
+  "clear": {
+    "responsive": true,
+    "values": [
+      "both",
+      "left",
+      "right",
+      "none"
+    ]
+  }
+}

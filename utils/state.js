@@ -4,17 +4,17 @@ class State {
   }
 
   get() {
-    return this.data;
+    return this.data
   }
 
   add(items) {
-    this.data.push(...items);
+    this.data.push(...items)
   }
 
   clear() {
-    this.data = [];
+    this.data = []
   }
 }
 
-const state = new State();
-export default state;
+const state = new State()
+export default state

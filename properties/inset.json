@@ -1,35 +1,35 @@
 {
-  "margin": {
+  "inset": {
     "prefix": "m",
     "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
-  "margin-block": {
+  "inset-block": {
     "prefix": "my",
     "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
-  "margin-inline": {
+  "inset-inline": {
     "prefix": "mx",
     "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
-  "margin-block-start": {
+  "inset-block-start": {
     "prefix": "mys",
     "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
-  "margin-block-end": {
+  "inset-block-end": {
     "prefix": "mye",
     "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
-  "margin-inline-start": {
+  "inset-inline-start": {
     "prefix": "mxs",
     "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]
   },
-  "margin-inline-end": {
+  "inset-inline-end": {
     "prefix": "mxe",
     "responsive": ["!light", "!dark"],
     "values": ["...SPACES", "...NEGATIVE_SPACES"]

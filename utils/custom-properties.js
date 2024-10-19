@@ -1,20 +1,22 @@
 export default function setCustomProperties(props) {
-  let output = ''
-  const { customPropertiesOnly, rootCustomProperties, settings } = props;
+  let output = ""
+  const tab = "\t"
+  const nl = "\n"
+  const { customPropertiesOnly, rootCustomProperties, settings } = props
   if (rootCustomProperties || customPropertiesOnly) {
-    output += `:root {\n`
-    settings.forEach(setting => {
-      Object.values(setting).forEach(subSetting => {
-        const { prefix=null, values, addRoot=false } = subSetting;
+    output += `:root {${nl}`
+    settings.forEach((setting) => {
+      Object.values(setting).forEach((subSetting) => {
+        const { prefix = null, values, addRoot = false } = subSetting
         if (values && addRoot) {
-          const setPrefix = prefix ? `${prefix}-` : ''
+          const setPrefix = prefix ? `${prefix}-` : ""
           Object.entries(values).forEach(([key, value]) => {
-            output += `\t--${setPrefix}${key}: ${value};\n`
-          });
+            output += `${tab}--${setPrefix}${key}: ${value};${nl}`
+          })
         }
-      });
-    });
-    output += `}\n\n`
+      })
+    })
+    output += `}${nl}${nl}`
   }
   return output
 }

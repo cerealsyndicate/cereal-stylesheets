@@ -1,0 +1,14 @@
+{
+  "text-align": {
+    "prefix": "text",
+    "responsive": [
+      "!dark",
+      "!light"
+    ],
+    "values": [
+      "start",
+      "center",
+      "end"
+    ]
+  }
+}

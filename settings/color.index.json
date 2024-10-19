@@ -1,9 +1,5 @@
 {
   "COLOR": {
-    "values": [
-      "...COLOR_GRAY",
-      "...COLOR_RED",
-      "...COLOR_BLUE"
-    ]
+    "values": ["...COLOR_GRAY", "...COLOR_RED", "...COLOR_BLUE"]
   }
 }

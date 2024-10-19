@@ -1,0 +1,16 @@
+{
+  "overflow": {
+    "responsive": true,
+    "values": ["visible", "hidden", "scroll", "auto"]
+  },
+  "overflow-block": {
+    "prefix": "overflow-x",
+    "responsive": true,
+    "values": ["visible", "hidden", "scroll", "auto"]
+  },
+  "overflow-inline": {
+    "prefix": "overflow-y",
+    "responsive": true,
+    "values": ["visible", "hidden", "scroll", "auto"]
+  }
+}

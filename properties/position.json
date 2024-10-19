@@ -1,0 +1,6 @@
+{
+  "position": {
+    "responsive": ["!dark", "!light"],
+    "values": ["static", "relative", "absolute", "fixed", "sticky"]
+  }
+}

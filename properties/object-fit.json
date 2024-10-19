@@ -1,0 +1,5 @@
+{
+  "object-fit": {
+    "values": ["fill", "contain", "cover", "none", "scale-down"]
+  }
+}

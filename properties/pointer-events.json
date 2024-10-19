@@ -1,0 +1,13 @@
+{
+  "pointer-events": {
+    "prefix": "pe",
+    "responsive": true,
+    "states": true,
+    "values": [
+      "none",
+      "auto",
+      "initial",
+      "inherit"
+    ]
+  }
+}
