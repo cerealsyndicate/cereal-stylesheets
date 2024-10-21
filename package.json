@@ -25,11 +25,16 @@
   },
   "files": [
     "index.js",
+    "helpers/",
     "properties/",
     "settings/",
     "utils/"
   ],
   "bin": {
     "cereal-stylesheets": "./index.js"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 }
