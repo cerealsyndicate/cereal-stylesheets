@@ -10,7 +10,7 @@ if [ -z "$1" ]; then
 fi
 
 # Get the current version from package.json
-CURRENT_VERSION=$(grep -oP '(?<="version": ")[^"]*' package.json)
+CURRENT_VERSION=$(sed -n 's/.*"version": "\(.*\)".*/\1/p' package.json)
 echo "Current version: $CURRENT_VERSION"
 
 # Split the version into its components
@@ -85,8 +85,8 @@ git commit -m "chore(release): bump version to $NEW_VERSION"
 git tag "v$NEW_VERSION"
 
 # Generate or update the changelog
-echo "## v$NEW_VERSION" >> CHANGELOG.md
-git log --pretty=format:"- %s (%h)" "v$CURRENT_VERSION"...HEAD >> CHANGELOG.md
+CHANGELOG_CONTENT=$(git log --pretty=format:"- %s (%h)" "v$CURRENT_VERSION"...HEAD)
+echo -e "## v$NEW_VERSION\n$CHANGELOG_CONTENT\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
 
 # Commit the changelog
 git add CHANGELOG.md
