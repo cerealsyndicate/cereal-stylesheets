@@ -5,3 +5,6 @@ config_sample
 # Ignore VS Code Files
 .vscode
 *.code-workspace
+
+# Ignore Initial Release Script
+bin/init.sh
