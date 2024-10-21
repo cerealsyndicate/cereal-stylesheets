@@ -5,9 +5,31 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch index.js"
+    "start": "node index.js",
+    "release-patch": "./bin/release.sh patch",
+    "release-minor": "./bin/release.sh minor",
+    "release-major": "./bin/release.sh major",
+    "release-alpha": "./bin/release.sh alpha",
+    "release-beta": "./bin/release.sh beta"
   },
   "keywords": [],
   "author": "Philip Zastrow",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cerealsyndicate/cereal-stylesheets.git"
+  },
+  "homepage": "https://github.com/cerealsyndicate/cereal-stylesheets#readme",
+  "bugs": {
+    "url": "https://github.com/cerealsyndicate/cereal-stylesheets/issues"
+  },
+  "files": [
+    "index.js",
+    "properties/",
+    "settings/",
+    "utils/"
+  ],
+  "bin": {
+    "cereal-stylesheets": "./index.js"
+  }
 }
