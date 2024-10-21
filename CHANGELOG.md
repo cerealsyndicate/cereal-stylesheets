@@ -1,3 +1,10 @@
+## v0.0.1
+- chore(release): bump version to 0.0.1 (53be63f)
+- Add missing directory for package release (f871c64)
+- Update gitignore (60dbc3f)
+- Update to sed from grep (4d3787a)
+- chore(release): add initial changelog for 0.0.0 (b8ac62b)
+
 # CHANGELOG
 
 ## v0.0.0
@@ -13,4 +20,3 @@
 - Remove logical properties option (c9ed1c4)
 - Add README (bb4c23b)
 - Initial commit :pencil: (yeah, it’s a lot for an init) (3beb09c)
-
