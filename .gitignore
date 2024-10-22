@@ -1,6 +1,25 @@
-output.css
-/dist
-config_sample
+# Ignore everything
+*
+
+# Allow specific files and directories
+!.gitignore
+!CHANGELOG.md
+!index.js
+!LICENSE
+!package.json
+!README.md
+
+# Allow everything inside these directories
+!bin/
+!bin/**
+!helpers/
+!helpers/**
+!properties/
+!properties/**
+!settings/
+!settings/**
+!utils/
+!utils/**
 
 # Ignore VS Code Files
 .vscode

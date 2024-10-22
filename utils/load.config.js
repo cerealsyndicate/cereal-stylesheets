@@ -1,11 +1,10 @@
 import fs from "fs"
 import path from "path"
-import defaultConfig from "./default.config.js"
-import mediaQueries from "./default.media-queries.js"
 import mqNormalizer from "./media-query.normalizer.js"
+import mediaQueries from "./default.media-queries.js"
 import state from "./state.js"
+import defaultConfig from "./default.config.js"
 
-// Function to load properties from files in the properties folder
 function loadProperties() {
   const propertiesDir = path.resolve(process.cwd(), "properties")
   const properties = {}
@@ -57,8 +56,10 @@ function loadSettings() {
   return settings
 }
 
-async function config() {
-  const configPath = path.resolve(process.cwd(), "cereal.config.js")
+async function config(configFilePath) {
+  const configPath = configFilePath
+    ? path.resolve(process.cwd(), configFilePath)
+    : path.resolve(process.cwd(), "cereal.config.js")
 
   let userConfig = {}
   if (fs.existsSync(configPath)) {
@@ -69,7 +70,9 @@ async function config() {
     }
   } else {
     console.warn(
-      "Optional configuration file cereal.config.js not found in the project root."
+      `Optional configuration file ${
+        configFilePath || "cereal.config.js"
+      } not found in the project root.`
     )
   }
 
@@ -96,17 +99,16 @@ async function config() {
   const normalizedMediaQueries = mqNormalizer(mediaQueries)
   const normalizedUserMediaQueries = mqNormalizer(userMediaQueries)
 
-  // Destructure and exclude the `values` property
   const { values: _, ...restNormalizedMediaQueries } = normalizedMediaQueries
   const { values: __, ...restNormalizedUserMediaQueries } =
     normalizedUserMediaQueries
 
   const finalMediaQueries = {
-    ...restNormalizedMediaQueries, // Spread the rest of the properties from normalizedMediaQueries
-    ...restNormalizedUserMediaQueries, // Spread the rest of the properties from normalizedUserMediaQueries
+    ...restNormalizedMediaQueries,
+    ...restNormalizedUserMediaQueries,
     values: userMediaQueries?.values
       ? normalizedUserMediaQueries.values
-      : normalizedMediaQueries.values, // Conditionally include the `values` property
+      : normalizedMediaQueries.values,
   }
 
   state.add([
