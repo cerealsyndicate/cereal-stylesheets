@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "build": "node index.js",
     "release-patch": "./bin/release.sh patch",
     "release-minor": "./bin/release.sh minor",
     "release-major": "./bin/release.sh major",
