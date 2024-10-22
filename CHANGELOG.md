@@ -1,3 +1,8 @@
+## v0.0.3
+- chore(release): bump version to 0.0.3 (4383876)
+- Change start to build (3e3a3ec)
+- chore(release): update changelog for 0.0.2 (bc0965e)
+
 ## v0.0.2
 - chore(release): bump version to 0.0.2 (52b39c8)
 - Add shell arguments (d651fb2)
