@@ -1,3 +1,8 @@
+## v0.0.2
+- chore(release): bump version to 0.0.2 (52b39c8)
+- Add shell arguments (d651fb2)
+- chore(release): update changelog for 0.0.1 (ae1190e)
+
 ## v0.0.1
 - chore(release): bump version to 0.0.1 (53be63f)
 - Add missing directory for package release (f871c64)
