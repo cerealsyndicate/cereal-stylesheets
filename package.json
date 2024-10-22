@@ -31,7 +31,7 @@
     "utils/"
   ],
   "bin": {
-    "cereal-stylesheets": "./index.js"
+    "cereal": "./index.js"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
