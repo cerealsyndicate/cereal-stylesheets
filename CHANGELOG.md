@@ -1,3 +1,8 @@
+## v0.1.0
+- chore(release): bump version to 0.1.0 (6d7c667)
+- Change name of shell command (6dc29a7)
+- chore(release): update changelog for 0.0.3 (51565d4)
+
 ## v0.0.3
 - chore(release): bump version to 0.0.3 (4383876)
 - Change start to build (3e3a3ec)
