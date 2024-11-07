@@ -5,8 +5,10 @@ import mediaQueries from "./default.media-queries.js"
 import state from "./state.js"
 import defaultConfig from "./default.config.js"
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
+
 function loadProperties() {
-  const propertiesDir = path.resolve(process.cwd(), "properties")
+  const propertiesDir = path.resolve(__dirname, "../properties")
   const properties = {}
 
   if (fs.existsSync(propertiesDir)) {
@@ -32,7 +34,7 @@ function loadProperties() {
 
 // Function to load settings from files in the settings folder
 function loadSettings() {
-  const settingsDir = path.resolve(process.cwd(), "settings")
+  const settingsDir = path.resolve(__dirname, "../settings")
   const settings = {}
 
   if (fs.existsSync(settingsDir)) {
@@ -57,74 +59,73 @@ function loadSettings() {
 }
 
 async function config(configFilePath) {
-  const configPath = configFilePath
-    ? path.resolve(process.cwd(), configFilePath)
-    : path.resolve(process.cwd(), "cereal.config.js")
-
   let userConfig = {}
-  if (fs.existsSync(configPath)) {
-    try {
-      userConfig = (await import(configPath)).default
-    } catch (error) {
-      console.error(`Error loading configuration file: ${configPath}`, error)
-    }
+
+  // Check if configFilePath is an object
+  if (typeof configFilePath === "object") {
+    userConfig = configFilePath
   } else {
-    console.warn(
-      `Optional configuration file ${
-        configFilePath || "cereal.config.js"
-      } not found in the project root.`
-    )
+    // Resolve the path and load the configuration file
+    const configPath = configFilePath
+      ? path.resolve(process.cwd(), configFilePath)
+      : path.resolve(process.cwd(), "cereal.config.js")
+
+    if (fs.existsSync(configPath)) {
+      try {
+        userConfig = (await import(configPath)).default
+      } catch (error) {
+        console.error(`Error loading configuration file: ${configPath}`, error)
+        userConfig = {} // Ensure userConfig is an object even if import fails
+      }
+    } else {
+      console.warn(
+        `Optional configuration file ${
+          configFilePath || "cereal.config.js"
+        } not found in the project root.`
+      )
+    }
   }
 
-  const properties = loadProperties()
-  const settings = loadSettings()
+  // Ensure userConfig is always an object
+  userConfig = userConfig || {}
 
-  const {
-    properties: userProperties,
-    settings: userSettings,
-    mediaQueries: userMediaQueries,
-    ...customUserConfig
-  } = userConfig
+  const defaultConfigData = defaultConfig
 
-  const finalProperties = {
-    ...properties,
-    ...userProperties,
+  const properties = {
+    ...defaultConfigData.properties,
+    ...(userConfig.properties || loadProperties()),
   }
 
-  const finalSettings = {
-    ...settings,
-    ...userSettings,
+  const settings = {
+    ...defaultConfigData.settings,
+    ...(userConfig.settings || loadSettings()),
   }
 
-  const normalizedMediaQueries = mqNormalizer(mediaQueries)
-  const normalizedUserMediaQueries = mqNormalizer(userMediaQueries)
+  const normalizedMediaQueries = userConfig.mediaQueries
+    ? mqNormalizer(userConfig.mediaQueries)
+    : mqNormalizer(mediaQueries)
 
   const { values: _, ...restNormalizedMediaQueries } = normalizedMediaQueries
-  const { values: __, ...restNormalizedUserMediaQueries } =
-    normalizedUserMediaQueries
 
   const finalMediaQueries = {
     ...restNormalizedMediaQueries,
-    ...restNormalizedUserMediaQueries,
-    values: userMediaQueries?.values
-      ? normalizedUserMediaQueries.values
-      : normalizedMediaQueries.values,
+    values: normalizedMediaQueries.values,
   }
 
   state.add([
     {
-      properties: finalProperties,
-      settings: finalSettings,
+      properties,
+      settings,
       mediaQueries: finalMediaQueries,
     },
   ])
 
   return {
-    ...defaultConfig,
-    ...customUserConfig,
+    ...defaultConfigData,
+    ...userConfig,
     mediaQueries: finalMediaQueries,
-    properties: finalProperties,
-    settings: finalSettings,
+    properties,
+    settings,
   }
 }
 

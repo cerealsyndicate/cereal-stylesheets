@@ -17,7 +17,13 @@ export default function getValues(str) {
     return str
   } else if (isStringArray(str)) {
     const obj = str.slice(3)
-    return getValues(getSettings(obj).values)
+    const settings = getSettings(obj)
+    if (settings && settings.values) {
+      return getValues(settings.values)
+    } else {
+      console.warn(`Settings for ${obj} not found or invalid.`)
+      return {}
+    }
   }
 
   return finalValues
