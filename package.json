@@ -1,6 +1,6 @@
 {
   "name": "cereal-stylesheets",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Stylesheets of champions",
   "main": "index.js",
   "type": "module",

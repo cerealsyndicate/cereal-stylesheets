@@ -1,3 +1,9 @@
+## v0.2.1
+- chore(release): bump version to 0.2.1 (8500fc2)
+- Update package.json for npm (6c32bee)
+- Merge pull request #2 from cerealsyndicate/release-0.2.0 (1eccfe5)
+- chore(release): update changelog for 0.2.0 (8cc8dd2)
+
 ## v0.2.0
 - chore(release): bump version to 0.2.0 (b5bd96c)
 - Merge pull request #1 from cerealsyndicate/fix-cli (a592900)
