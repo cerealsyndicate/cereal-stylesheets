@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs from "fs"
 import path from "path"
 import config from "./utils/load.config.js"
@@ -18,16 +20,22 @@ async function main() {
     }
   })
 
+  // Set a default value for configFileArg if not provided
+  configFileArg = configFileArg || "cereal.config.js"
+
   const loadConfiguration = await config(configFileArg)
   const configuration = loadConfiguration
+
+  // Set default values for outputDirectory and outputFile
+  const outputDirectory = configuration.outputDirectory || "./"
+  const outputFile = configuration.outputFile || "output.css"
 
   // Determine the output path and file
   let outputPath
   if (outputArg) {
     outputPath = path.resolve(process.cwd(), outputArg)
   } else {
-    const outputDir = path.resolve(process.cwd(), configuration.outputDirectory)
-    const outputFile = configuration.outputFile
+    const outputDir = path.resolve(process.cwd(), outputDirectory)
     outputPath = path.join(outputDir, outputFile)
   }
 

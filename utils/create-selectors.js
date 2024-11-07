@@ -1,6 +1,7 @@
 import getValues from "../helpers/get-values.js"
 import escapeClassSeparator from "../helpers/escape-class.js"
 import isTypeOf from "../helpers/is-typeof.js"
+import mqNormalizer from "./media-query.normalizer.js"
 
 const tab = "\t"
 const nl = "\n"
@@ -35,7 +36,7 @@ const generateSelectors = (
   return selectorString
 }
 
-const createAllClasses = (properties, { ...mq }) => {
+const createAllClasses = (properties, mediaQueries, { ...mq }) => {
   let selectorString = ""
 
   // Loop through the properties
@@ -101,6 +102,8 @@ const createAllClasses = (properties, { ...mq }) => {
               }
             }
           })
+        } else {
+          generator()
         }
       }
     })
@@ -114,10 +117,12 @@ export default function createSelectors(props) {
   const { mediaQueries, properties } = props
   let classes = ""
 
-  classes += createAllClasses(properties, {})
+  const normalizedMediaQueries = mqNormalizer(mediaQueries)
 
-  if (mediaQueries.defineMediaQueries) {
-    for (const [key, values] of Object.entries(mediaQueries.values)) {
+  classes += createAllClasses(properties, mediaQueries, {})
+
+  if (normalizedMediaQueries && normalizedMediaQueries.defineMediaQueries) {
+    for (const [key, values] of Object.entries(normalizedMediaQueries.values)) {
       const { type, value, queryClass } = values
       if (queryClass) {
         const atMQ = () => {
@@ -136,7 +141,7 @@ export default function createSelectors(props) {
         }
 
         classes += `${atMQ()} {${nl}`
-        classes += `${createAllClasses(properties, {
+        classes += `${createAllClasses(properties, mediaQueries, {
           separator: "@",
           value: key,
         })}`
