@@ -1,5 +1,19 @@
 {
   "COLOR": {
-    "values": ["...COLOR_GRAY", "...COLOR_RED", "...COLOR_BLUE"]
+    "values": [
+      "...COLOR_GRAY",
+      "...COLOR_RED",
+      "...COLOR_ORANGE",
+      "...COLOR_YELLOW",
+      "...COLOR_LIME",
+      "...COLOR_GREEN",
+      "...COLOR_TEAL",
+      "...COLOR_CYAN",
+      "...COLOR_AZURE",
+      "...COLOR_BLUE",
+      "...COLOR_VIOLET",
+      "...COLOR_GREIGE",
+      "...COLOR_SLATE"
+    ]
   }
 }

@@ -1,0 +1,20 @@
+{
+  "COLOR_GREIGE": {
+    "addRoot": true,
+    "values": {
+      "greige-000": "hsl(0, 5%, 95%)",
+      "greige-100": "hsl(0, 5%, 88%)",
+      "greige-200": "hsl(0, 5%, 81%)",
+      "greige-300": "hsl(0, 5%, 74%)",
+      "greige-400": "hsl(0, 5%, 67%)",
+      "greige-500": "hsl(0, 5%, 60%)",
+      "greige-600": "hsl(0, 5%, 53%)",
+      "greige-700": "hsl(0, 5%, 46%)",
+      "greige-800": "hsl(0, 5%, 39%)",
+      "greige-900": "hsl(0, 5%, 32%)",
+      "greige-1000": "hsl(0, 5%, 25%)",
+      "greige-1100": "hsl(0, 5%, 18%)",
+      "greige-1200": "hsl(0, 5%, 11%)"
+    }
+  }
+}
